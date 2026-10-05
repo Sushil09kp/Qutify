@@ -2,11 +2,13 @@ import leftArrow from "../../assets/left-arrow.svg";
 import styles from "./Carousel.module.css";
 
 function CarouselLeftNavigation({ swiper, isBeginning }) {
-  if (!swiper || isBeginning) return null;
+  const hidden = !swiper || isBeginning;
+
   return (
     <button
       className={`${styles.navButton} ${styles.left}`}
-      onClick={() => swiper.slidePrev()}
+      style={{ visibility: hidden ? "hidden" : "visible" }}
+      onClick={() => swiper && swiper.slidePrev()}
       aria-label="previous"
     >
       <img src={leftArrow} alt="" />

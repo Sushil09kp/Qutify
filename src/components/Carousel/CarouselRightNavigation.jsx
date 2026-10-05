@@ -2,11 +2,13 @@ import rightArrow from "../../assets/right-arrow.svg";
 import styles from "./Carousel.module.css";
 
 function CarouselRightNavigation({ swiper, isEnd }) {
-  if (!swiper || isEnd) return null;
+  const hidden = !swiper || isEnd;
+
   return (
     <button
       className={`${styles.navButton} ${styles.right}`}
-      onClick={() => swiper.slideNext()}
+      style={{ visibility: hidden ? "hidden" : "visible" }}
+      onClick={() => swiper && swiper.slideNext()}
       aria-label="next"
     >
       <img src={rightArrow} alt="" />
