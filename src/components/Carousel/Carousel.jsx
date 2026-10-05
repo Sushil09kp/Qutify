@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import CarouselLeftNavigation from "./CarouselLeftNavigation";
@@ -15,6 +15,14 @@ function Carousel({ data, renderComponent }) {
     setIsEnd(s.isEnd);
   };
 
+  // jab bhi cards ki ginti badle, Swiper ko size dobara naapne do aur edges update karo
+  useEffect(() => {
+    if (swiper) {
+      swiper.update();
+      updateEdges(swiper);
+    }
+  }, [swiper, data.length]);
+
   return (
     <div className={styles.wrapper}>
       <CarouselLeftNavigation swiper={swiper} isBeginning={isBeginning} />
@@ -28,6 +36,8 @@ function Carousel({ data, renderComponent }) {
         }}
         onSlideChange={updateEdges}
         onResize={updateEdges}
+        onUpdate={updateEdges}
+        onSlidesLengthChange={updateEdges}
       >
         {data.map((item) => (
           <SwiperSlide key={item.id} className={styles.slide}>
