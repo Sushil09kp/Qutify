@@ -7,7 +7,7 @@ function CarouselLeftNavigation({ swiper, isBeginning }) {
   return (
     <button
       className={`${styles.navButton} ${styles.left}`}
-      style={{ display: hidden ? "none" : undefined }}
+      style={{ opacity: hidden ? 0 : 1 }}
       onClick={() => swiper && swiper.slidePrev()}
       aria-label="previous"
     >

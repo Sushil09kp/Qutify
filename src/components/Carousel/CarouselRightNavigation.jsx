@@ -7,7 +7,7 @@ function CarouselRightNavigation({ swiper, isEnd }) {
   return (
     <button
       className={`${styles.navButton} ${styles.right}`}
-      style={{ display: hidden ? "none" : undefined }}
+      style={{ opacity: hidden ? 0 : 1 }}
       onClick={() => swiper && swiper.slideNext()}
       aria-label="next"
     >
