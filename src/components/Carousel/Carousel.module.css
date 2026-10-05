@@ -1,0 +1,26 @@
+.wrapper {
+  position: relative;
+}
+
+.slide {
+  width: auto;
+}
+
+.navButton {
+  position: absolute;
+  top: 40%;
+  transform: translateY(-50%);
+  z-index: 10;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+.left {
+  left: -16px;
+}
+
+.right {
+  right: -16px;
+}
