@@ -15,12 +15,10 @@ function Carousel({ data, renderComponent }) {
     setIsEnd(s.isEnd);
   };
 
-  // jab bhi cards ki ginti badle, Swiper ko size dobara naapne do aur edges update karo
   useEffect(() => {
-    if (swiper) {
-      swiper.update();
-      updateEdges(swiper);
-    }
+    if (!swiper) return;
+    swiper.update();
+    updateEdges(swiper);
   }, [swiper, data.length]);
 
   return (
@@ -30,6 +28,9 @@ function Carousel({ data, renderComponent }) {
       <Swiper
         slidesPerView="auto"
         spaceBetween={24}
+        observer={true}
+        observeParents={true}
+        observeSlideChildren={true}
         onSwiper={(s) => {
           setSwiper(s);
           updateEdges(s);
@@ -38,6 +39,8 @@ function Carousel({ data, renderComponent }) {
         onResize={updateEdges}
         onUpdate={updateEdges}
         onSlidesLengthChange={updateEdges}
+        onObserverUpdate={updateEdges}
+        onFromEdge={updateEdges}
       >
         {data.map((item) => (
           <SwiperSlide key={item.id} className={styles.slide}>
