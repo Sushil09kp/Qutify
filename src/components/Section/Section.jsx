@@ -35,7 +35,14 @@ function Section({ title, endpoint, type = "album" }) {
     if (!isSong) return;
     axios
       .get(GENRES_URL)
-      .then((res) => setGenres(res.data.data))
+      .then((res) => {
+    const order = ["rock", "pop", "jazz", "blues"];
+    setGenres(
+        [...res.data.data].sort(
+      (a, b) => order.indexOf(a.key) - order.indexOf(b.key)
+    )
+  );
+})
       .catch((err) => console.error(err));
   }, [isSong]);
 
